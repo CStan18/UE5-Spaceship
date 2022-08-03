@@ -53,9 +53,9 @@ public:
 
 	UPROPERTY(EditAnywhere, Category = "Components")
 	class UCapsuleComponent* CapsuleComp;
-	UPROPERTY(EditAnywhere, Category = "Components")
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Components")
 	class USpringArmComponent* SpringArm;
-	UPROPERTY(EditAnywhere, Category = "Components")
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Components")
 	class UCameraComponent* CameraComp;
 
 
