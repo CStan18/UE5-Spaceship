@@ -4,4 +4,5 @@
 Still to add:
 Lock on missiles,
 Sounds,
-Warp
+Warp,
+Flares
