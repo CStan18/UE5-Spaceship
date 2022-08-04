@@ -2,6 +2,6 @@
  Programming flight controls plus more
 
 Still to add:
- Lock on missiles
- Sounds
- Warp?
+Lock on missiles,
+Sounds,
+Warp
