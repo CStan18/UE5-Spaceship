@@ -5,6 +5,8 @@
 #include "GameFramework/SpringArmComponent.h"
 #include "Camera/CameraComponent.h"
 #include "Components/CapsuleComponent.h"
+#include "Components/SceneComponent.h"
+#include "Projectile.h"
 
 // Sets default values
 ASpaceshipController::ASpaceshipController()
@@ -15,10 +17,13 @@ ASpaceshipController::ASpaceshipController()
 	CapsuleComp = CreateDefaultSubobject<UCapsuleComponent>(TEXT("Root"));
 	RootComponent =  CapsuleComp;
 
-	SpringArm = CreateDefaultSubobject<USpringArmComponent>(TEXT("Spring Arm"));
-	SpringArm->SetupAttachment(CapsuleComp);
-	CameraComp = CreateDefaultSubobject<UCameraComponent>(TEXT("Camera Comp"));
-	CameraComp->SetupAttachment(SpringArm);
+	SpringArm1 = CreateDefaultSubobject<USpringArmComponent>(TEXT("SpringArm"));
+	SpringArm1->SetupAttachment(CapsuleComp);
+	CameraComp1 = CreateDefaultSubobject<UCameraComponent>(TEXT("CameraComp"));
+	CameraComp1->SetupAttachment(SpringArm1);
+
+	ProjectileSpawnPoint = CreateDefaultSubobject<USceneComponent>(TEXT("ProjectileSpawnPoint"));
+	ProjectileSpawnPoint->SetupAttachment(CapsuleComp);
 }
 
 // Called when the game starts or when spawned
@@ -96,7 +101,14 @@ void ASpaceshipController::Boost(float AxisValue)
 
 void ASpaceshipController::Fire()
 {
-	
+	FVector ProjectileSpawnPointLocation = ProjectileSpawnPoint->GetComponentLocation();
+	FRotator ProjectileSpawnPointRotation = ProjectileSpawnPoint->GetComponentRotation();
+	if (ProjectileClass)
+	{
+		GetWorld()->SpawnActor<AProjectile>(ProjectileClass,
+											ProjectileSpawnPointLocation,
+											ProjectileSpawnPointRotation);
+	}
 }
 
 // Called to bind functionality to input

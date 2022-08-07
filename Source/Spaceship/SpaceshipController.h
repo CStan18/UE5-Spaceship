@@ -54,9 +54,12 @@ public:
 	UPROPERTY(EditAnywhere, Category = "Components")
 	class UCapsuleComponent* CapsuleComp;
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Components")
-	class USpringArmComponent* SpringArm;
+	class USpringArmComponent* SpringArm1;
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Components")
-	class UCameraComponent* CameraComp;
+	class UCameraComponent* CameraComp1;
+
+	UPROPERTY(EditAnywhere, Category = "Component")
+	class USceneComponent* ProjectileSpawnPoint;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Gameplay")
 	FVector MuzzleOffset;

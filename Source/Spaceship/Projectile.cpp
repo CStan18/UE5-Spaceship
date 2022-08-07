@@ -2,8 +2,10 @@
 
 
 #include "Projectile.h"
-#include "Components/SphereComponent.h"
+#include "Components/BoxComponent.h"
 #include "GameFramework/ProjectileMovementComponent.h"
+#include "Kismet/GameplayStatics.h"
+#include "Particles/ParticleSystemComponent.h"
 
 // Sets default values
 AProjectile::AProjectile()
@@ -17,8 +19,7 @@ AProjectile::AProjectile()
 	}
 	if (!CollisionComp)
 	{
-		CollisionComp = CreateDefaultSubobject<USphereComponent>(TEXT("CollisionSphere"));
-		CollisionComp->InitSphereRadius(15.0f);
+		CollisionComp = CreateDefaultSubobject<UBoxComponent>(TEXT("CollisionComponent"));
 		RootComponent = CollisionComp;
 	}
 
@@ -35,6 +36,11 @@ AProjectile::AProjectile()
 		ProjectileMovementComponent->bShouldBounce = false;
 		ProjectileMovementComponent->ProjectileGravityScale = 0.f;
 	}
+
+	
+	MissileTrail = CreateDefaultSubobject<UParticleSystemComponent>(TEXT("MissileTrailEffect"));
+	MissileTrail->SetupAttachment(RootComponent);
+	
 
 }
 

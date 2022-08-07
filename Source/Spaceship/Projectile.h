@@ -24,15 +24,20 @@ public:
 	virtual void Tick(float DeltaTime) override;
 
 	UPROPERTY(VisibleDefaultsOnly, Category = Projectile)
-	class USphereComponent* CollisionComp;
+	class UBoxComponent* CollisionComp;
 
 	// Projectile movement component
 	UPROPERTY(VisibleAnywhere, Category = Movement)
 	class UProjectileMovementComponent* ProjectileMovementComponent;
 
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Combat");
+	class UParticleSystemComponent* MissileTrail;
+
 private:
 	// Function that initializaes the projectile's velocity in the shoot direction
 	void FireInDirection(const FVector& ShootDirection);
+
+	
 
 	
 
