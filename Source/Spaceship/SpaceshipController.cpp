@@ -94,6 +94,11 @@ void ASpaceshipController::Boost(float AxisValue)
 	CurrentSpeed += BoostValue;
 }
 
+void ASpaceshipController::Fire()
+{
+	
+}
+
 // Called to bind functionality to input
 void ASpaceshipController::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
@@ -104,5 +109,6 @@ void ASpaceshipController::SetupPlayerInputComponent(UInputComponent* PlayerInpu
 	PlayerInputComponent->BindAxis("TurnRate", this, &ASpaceshipController::ProcessRoll);
 	PlayerInputComponent->BindAxis("LookUpRate", this, &ASpaceshipController::ProcessPitch);
 	PlayerInputComponent->BindAxis("Boost", this, &ASpaceshipController::Boost);
+	PlayerInputComponent->BindAction("Fire", IE_Pressed, this, &ASpaceshipController::Fire);
 }
 

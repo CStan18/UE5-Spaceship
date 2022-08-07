@@ -58,6 +58,12 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Components")
 	class UCameraComponent* CameraComp;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Gameplay")
+	FVector MuzzleOffset;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Projectile")
+	TSubclassOf<class AProjectile> ProjectileClass;
+
 
 protected:
 	// Called when the game starts or when spawned
@@ -73,6 +79,9 @@ protected:
 	void ProcessPitch(float AxisValue);
 
 	void Boost(float AxisValue);
+
+	UFUNCTION()
+	void Fire();
 
 public:	
 	// Called every frame
